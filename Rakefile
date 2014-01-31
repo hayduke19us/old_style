@@ -17,8 +17,9 @@ Jeweler::Tasks.new do |gem|
   gem.name = "old_style"
   gem.homepage = "http://github.com/hayduke19us/old_style"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Get rid of those old css styles}
+  gem.description = %Q{Parses your html views and css stylesheets finding the 
+  the styles that are no longer attached to a node. }
   gem.email = "hayduke19us@gmail.com"
   gem.authors = ["hayduke19us"]
   # dependencies defined in Gemfile

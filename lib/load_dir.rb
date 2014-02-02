@@ -2,13 +2,14 @@ require 'css_parser'
 require 'nokogiri'
 
 class LoadDir
+  PATH = File.expand_path('../../app', __FILE__)
   include CssParser 
   attr_accessor :directories, :files, :css, :html
 
   def initialize(*args)
     @directories = args
     @files = []
-    @directories.each {|dir| Dir.foreach(Dir.pwd + "/#{dir}") {|x| @files << x unless /^\./.match(x)}} 
+    @directories.each {|dir| Dir.foreach(PATH + "/#{dir}") {|x| @files << x unless /^\./.match(x)}} 
     @css = []
     @html = []
   end
@@ -30,12 +31,12 @@ class LoadDir
       end
     end
   end
-  
+
   def parse_css
     tmp = []
     self.css.each do |file|
       parser = CssParser::Parser.new
-      parser.load_file!(file, Dir.pwd + "/fake", :all)
+      parser.load_file!(file, PATH + "/fake", :all)
       parser.each_selector(:all) do |selector, dec, spec|
         tmp << selector unless /^\//.match(selector)
       end
@@ -47,7 +48,7 @@ class LoadDir
     #call segregate first
     yes = []
     self.html.each do |file|
-      doc = Nokogiri::HTML(open(Dir.pwd + "/fake/#{file}"))
+      doc = Nokogiri::HTML(open(PATH + "/fake/#{file}"))
       self.parse_css.each do |sel|
         unless doc.css(sel).empty?
           doc.css(sel).each {|link| yes << "#{sel}: #{link.content}"}
@@ -56,6 +57,7 @@ class LoadDir
     end
     yes
   end
+
 end
 
 

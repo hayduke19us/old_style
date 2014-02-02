@@ -2,7 +2,11 @@ require 'helper'
 
 class LoadDirTest < MiniTest::Test
   def setup
-    @load_dir = LoadDir.new("test") 
+    @load_dir = LoadDir.new("fake") 
+  end
+
+  def Path_should_be_HOME_and_app_directory
+    assert_equal 'Users/hayduke19us/ruby_projects/old_style/app', PATH 
   end
 
   def test_LoadDir_is_valid
@@ -15,7 +19,7 @@ class LoadDirTest < MiniTest::Test
 
   def test_LoadDir_files_finds_the_files_in_said_directories
     dir = []
-    Dir.foreach("test") {|f| dir << f unless /^\./.match(f)} 
+    Dir.foreach("app/fake") {|f| dir << f unless /^\./.match(f)} 
     assert_equal dir.count, @load_dir.files.count
   end
 
@@ -53,7 +57,6 @@ class LoadDirTest < MiniTest::Test
   end
 
   def test_that_comments_are_not_added_to_parse_css_array
-    assert_equal 2, File.readlines(Dir.pwd + "/fake/fake3.css").count
     load_dir = LoadDir.new("fake")
     load_dir.segregate
     assert_equal 2, load_dir.parse_css.count

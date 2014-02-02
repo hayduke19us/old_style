@@ -5,8 +5,12 @@ class LoadDirTest < MiniTest::Test
     @load_dir = LoadDir.new("fake") 
   end
 
-  def Path_should_be_HOME_and_app_directory
-    assert_equal 'Users/hayduke19us/ruby_projects/old_style/app', PATH 
+  def test_HTML_PATH_should_be_for_views
+    assert_equal '/Users/hayduke19us/my_gems/old_style/app/views', LoadDir::HTML_PATH 
+  end
+
+  def teset_CSS_PATH_should_be_for_assets_stylesheets
+    assert_equal '/Users/hayduke19us/my_gems/old_style/app/assets/stylesheets', LoadDir::CSS_PATH 
   end
 
   def test_LoadDir_is_valid
@@ -17,10 +21,11 @@ class LoadDirTest < MiniTest::Test
     assert_equal 1, @load_dir.directories.count
   end
 
-  def test_LoadDir_files_finds_the_files_in_said_directories
+  def test_LoadDir_files_finds_the_files_in_HTML_PATH
     dir = []
-    Dir.foreach("app/fake") {|f| dir << f unless /^\./.match(f)} 
-    assert_equal dir.count, @load_dir.files.count
+    Dir.foreach(LoadDir::HTML_PATH + "/fake" ) {|f| dir << f unless /^\./.match(f)} 
+    Dir.foreach(LoadDir::CSS_PATH + "/fake" ) {|f| dir << f unless /^\./.match(f)} 
+    assert_equal 4, dir.count
   end
 
   def test_true_if_css?

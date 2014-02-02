@@ -2,16 +2,40 @@ require 'css_parser'
 require 'nokogiri'
 
 class LoadDir
-  PATH = File.expand_path('../../app', __FILE__)
-  include CssParser 
+  HTML_PATH = File.expand_path('../../app/views', __FILE__)
+  CSS_PATH = File.expand_path('../../app/assets/stylesheets', __FILE__)
+
+  include CssParser
+
   attr_accessor :directories, :files, :css, :html
 
   def initialize(*args)
     @directories = args
-    @files = []
-    @directories.each {|dir| Dir.foreach(PATH + "/#{dir}") {|x| @files << x unless /^\./.match(x)}} 
-    @css = []
-    @html = []
+    @files = {}
+    @css = {}
+    @html = {}
+    html_directories
+    css_directories
+  end
+
+  def html_directories
+    @directories.each do |dir|
+      Dir.foreach(HTML_PATH + "/#{dir}") do |file|
+        @files[file] = HTML_PATH + "/#{dir}/#{file}" unless /^\./.match(file)
+      end
+    end
+  end
+
+  def css_directories
+    # This method's return hashes' PATH value is different from html_directories.
+    # It only includes the directory because the css parser requires
+    # an argument of file, base_directory, media_type
+    # The path can't include the file
+    @directories.each do |dir|
+      Dir.foreach(CSS_PATH + "/#{dir}") do |file|
+        @files[file] = CSS_PATH + "/#{dir}" unless /^\./.match(file)
+      end
+    end
   end
 
   def css?(file)
@@ -23,20 +47,20 @@ class LoadDir
   end
 
   def segregate
-    self.files.each do |file|
+    self.files.each do |file, path|
       if self.css?(file)
-        self.css << file
+        self.css[file] = path
       elsif self.html?(file)
-        self.html << file
+        self.html[file] = path
       end
     end
   end
 
   def parse_css
     tmp = []
-    self.css.each do |file|
+    self.css.each do |file, path|
       parser = CssParser::Parser.new
-      parser.load_file!(file, PATH + "/fake", :all)
+      parser.load_file!(file, path, :all)
       parser.each_selector(:all) do |selector, dec, spec|
         tmp << selector unless /^\//.match(selector)
       end
@@ -47,8 +71,8 @@ class LoadDir
   def parse_html
     #call segregate first
     yes = []
-    self.html.each do |file|
-      doc = Nokogiri::HTML(open(PATH + "/fake/#{file}"))
+    self.html.each do |file, path|
+      doc = Nokogiri::HTML(open(path))
       self.parse_css.each do |sel|
         unless doc.css(sel).empty?
           doc.css(sel).each {|link| yes << "#{sel}: #{link.content}"}
@@ -57,7 +81,6 @@ class LoadDir
     end
     yes
   end
-
 end
 
 

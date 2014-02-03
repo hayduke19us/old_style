@@ -1,5 +1,6 @@
 require 'helper'
 
+
 class LoadDirTest < MiniTest::Test
   def setup
     @load_dir = LoadDir.new("fake") 
@@ -23,13 +24,6 @@ class LoadDirTest < MiniTest::Test
     assert_equal 1, @load_dir.directories.count
   end
 
-  def test_LoadDir_files_finds_the_files_in_HTML_PATH
-    dir = []
-    Dir.foreach(LoadDir::HTML_PATH + "/fake" ) {|f| dir << f unless /^\./.match(f)} 
-    Dir.foreach(LoadDir::CSS_PATH + "/fake" ) {|f| dir << f unless /^\./.match(f)} 
-    assert_equal 4, dir.count
-  end
-
   def test_true_if_css?
     file = "playlist.html"
     file_2 = "playlist.css"
@@ -44,32 +38,31 @@ class LoadDirTest < MiniTest::Test
     assert @load_dir.html?(file)
   end
 
-  def test_segregate_puts_css_files_in_an_array
+  def test_html_directories_and_css_directories_extracts_files
     assert_equal 4, @load_dir.files.count
+  end
+
+  def test_segregate_puts_css_files_in_an_array
     assert_equal 2, @load_dir.css.count
   end
 
-  def test_segregate_puts_css_files_in_an_array
-    assert_equal 2, @load_dir.html.count
-  end
-
-  def test_parse_css_returns_a_collection_of_selectors
+  def test_segregate_puts_html_files_in_an_array
     assert_equal 3, @load_dir.parse_css.count
   end
 
-  def test_that_comments_are_not_added_to_parse_css_array
-    assert_equal 3, @load_dir.parse_css.count
+  def test_parse_css_returns_collection_of_selectors_no_comments
+    assert_equal %w[#salinger .franny #franny], @load_dir.parse_css
   end
 
-  def test_parse_hmtl_creates_hash_with_noko_doc_as_keys
-    assert_equal Nokogiri::HTML::Document, @load_dir.html_css.keys.first.class
+  def test_parse_hmtl_returns_collection_of_Nokogiri_Document_objects
+    assert_equal Nokogiri::HTML::Document, @load_dir.parse_html.first.class
   end
 
-  def test_found_css_is_an_array_of_selctors
-    assert_equal 2, @load_dir.found_css.count
+  def test_parse_html_and_html_attribute_has_same_number_of_objects
+    assert_equal @load_dir.html.count, @load_dir.parse_html.count 
   end
 
-  def test_empty_css_is_an_array_of_selctors
-    assert_equal 2, @load_dir.empty_css.count
+  def test_empty_css_returns_a_collection_of_false_selectors
+    assert_equal [".franny"], @load_dir.empty_css
   end
 end

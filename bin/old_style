@@ -1,4 +1,6 @@
 !#/usr/bin/env ruby
 
-require 'old_style'
-puts "hello"
+path = File.expand_path('../../lib', __FILE__)
+
+require path + '/old_style'
+

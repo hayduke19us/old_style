@@ -36,18 +36,17 @@ class Format
     file.syswrite "</div>"
   end
 
-
   def good_percent
     x = self.found.keys.count/(self.found.keys.count + self.empty.keys.count).to_f
     y = (x * 100).to_s
-    z = /.{5}/.match(y)
+    z = /.{2}||.{5}/.match(y)
     z.to_s + "%"
   end
 
   def bad_percent
     x = self.empty.keys.count/(self.found.keys.count + self.empty.keys.count).to_f
     y = (x * 100).to_s
-    z = /.{5}/.match(y)
+    z = /.{2}||.{5}/.match(y)
     z.to_s + "%"
   end
 

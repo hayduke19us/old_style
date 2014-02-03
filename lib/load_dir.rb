@@ -10,7 +10,7 @@ class LoadDir
   attr_accessor :directories, :files, :css, :html
 
   def initialize(*args)
-    @directories = args
+    @directories = args.flatten
     @files = {}
     @css = {}
     @html = {}

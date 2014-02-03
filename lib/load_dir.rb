@@ -57,18 +57,6 @@ class LoadDir
     end
   end
 
-  def parse_css
-    tmp = []
-    self.css.each do |file, path|
-      parser = CssParser::Parser.new
-      parser.load_file!(file, path, :all)
-      parser.each_selector(:all) do |selector, dec, spec|
-        tmp << selector unless /^\//.match(selector)
-      end
-    end
-    tmp
-  end
-
   def parse_html
     #call segregate first
     self.html.inject([]) do |array, path|
@@ -76,16 +64,32 @@ class LoadDir
     end
   end
 
+  def parse_css
+    hash = {}
+    self.css.each do |file, path|
+      parser = CssParser::Parser.new
+      parser.load_file!(file, path, :all)
+      parser.each_selector(:all) do |selector, dec, spec|
+        hash[selector] = dec unless /^\//.match(selector)
+      end
+    end
+    hash
+  end
+
   def found_css
-    tmp = []
+    tmp = {}
     self.parse_html.each do |doc|
-      self.parse_css.each {|sel| tmp << sel unless doc.css(sel).empty?}
+      self.parse_css.each {|sel, des| tmp[sel] = des unless doc.css(sel).empty?}
     end
     tmp
   end
 
   def empty_css
-    self.parse_css - self.found_css
+    hash = {}
+    empty = self.parse_css.flatten - self.found_css.flatten
+    empty = empty.each_slice(2).to_a
+    empty.each {|sel| sel.each{hash[sel.first] = sel.last}}
+    hash
   end
 end
 

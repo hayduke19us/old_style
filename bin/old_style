@@ -1,0 +1,4 @@
+!#/usr/bin/env ruby
+
+require 'old_style'
+puts "hello"

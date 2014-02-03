@@ -3,6 +3,8 @@ require 'helper'
 class LoadDirTest < MiniTest::Test
   def setup
     @load_dir = LoadDir.new("fake") 
+    @load_dir.segregate
+    @load_dir.parse_html
   end
 
   def test_HTML_PATH_should_be_for_views
@@ -43,41 +45,31 @@ class LoadDirTest < MiniTest::Test
   end
 
   def test_segregate_puts_css_files_in_an_array
-    load_dir = LoadDir.new("fake")
-    assert_equal 4, load_dir.files.count
-    load_dir.segregate
-    assert_equal 2,load_dir.css.count
+    assert_equal 4, @load_dir.files.count
+    assert_equal 2, @load_dir.css.count
   end
 
   def test_segregate_puts_css_files_in_an_array
-    load_dir = LoadDir.new("fake")
-    load_dir.segregate
-    assert_equal 2,load_dir.html.count
+    assert_equal 2, @load_dir.html.count
   end
 
   def test_parse_css_returns_a_collection_of_selectors
-    load_dir = LoadDir.new("fake")
-    load_dir.segregate
-    assert_equal 2, load_dir.parse_css.count
+    assert_equal 3, @load_dir.parse_css.count
   end
 
   def test_that_comments_are_not_added_to_parse_css_array
-    load_dir = LoadDir.new("fake")
-    load_dir.segregate
-    assert_equal 2, load_dir.parse_css.count
+    assert_equal 3, @load_dir.parse_css.count
   end
 
-  def test_parse_html
-    load_dir = LoadDir.new("fake")
-    load_dir.segregate
-    assert_equal 1, load_dir.parse_html.count
+  def test_parse_hmtl_creates_hash_with_noko_doc_as_keys
+    assert_equal Nokogiri::HTML::Document, @load_dir.html_css.keys.first.class
   end
 
-  def test_parse_html_output_is_selector_and_content
-    load_dir = LoadDir.new("fake")
-    load_dir.segregate
-    assert_equal "#salinger: I'm looking forward", load_dir.parse_html.first
+  def test_found_css_is_an_array_of_selctors
+    assert_equal 2, @load_dir.found_css.count
   end
 
-  
+  def test_empty_css_is_an_array_of_selctors
+    assert_equal 2, @load_dir.empty_css.count
+  end
 end

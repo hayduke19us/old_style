@@ -7,13 +7,14 @@ class LoadDir
 
   include CssParser
 
-  attr_accessor :directories, :files, :css, :html
+  attr_accessor :directories, :files, :css, :html, :html_css
 
   def initialize(*args)
     @directories = args
     @files = {}
     @css = {}
     @html = {}
+    @html_css = {}
     html_directories
     css_directories
   end
@@ -70,16 +71,23 @@ class LoadDir
 
   def parse_html
     #call segregate first
-    yes = []
-    self.html.each do |file, path|
-      doc = Nokogiri::HTML(open(path))
-      self.parse_css.each do |sel|
-        unless doc.css(sel).empty?
-          doc.css(sel).each {|link| yes << "#{sel}: #{link.content}"}
-        end
-      end
+    self.html.each_value do |path|
+      self.html_css[Nokogiri::HTML(open(path))] = self.parse_css
     end
-    yes
+  end
+
+  def found_css
+    tmp = []
+    self.html_css.each do |k,v|
+      v.each {|sel| tmp << sel unless k.css(sel).empty?}
+    end
+  end
+
+  def empty_css
+    tmp = []
+    self.html_css.each do |k,v|
+      v.each {|sel| tmp << sel if k.css(sel).empty?}
+    end
   end
 end
 

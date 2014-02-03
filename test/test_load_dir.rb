@@ -1,6 +1,5 @@
 require 'helper'
 
-
 class LoadDirTest < MiniTest::Test
   def setup
     @load_dir = LoadDir.new("fake") 

@@ -51,8 +51,8 @@ class LoadDirTest < MiniTest::Test
     assert_equal 2, @load_dir.html.count
   end
 
-  def test_parse_css_returns_hash_of_all_selectors_no_comments_no_LESS
-    assert_equal %w[#salinger .franny #franny .zooey], @load_dir.parse_css.keys
+  def test_parse_css_returns_hash_of_all_selectors_no_comments_no_SASS
+    assert_equal %w[#salinger #find .franny #franny .zooey], @load_dir.parse_css.keys
   end
 
   def test_parse_hmtl_returns_collection_of_Nokogiri_Document_objects
@@ -64,7 +64,7 @@ class LoadDirTest < MiniTest::Test
   end
 
   def test_empty_css_returns_a_hash_of_false_selectors
-    assert_equal ".franny", @load_dir.empty_css.keys.first
+    assert_equal "#find", @load_dir.empty_css.keys.first
   end
 
 end

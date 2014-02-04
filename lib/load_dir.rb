@@ -68,7 +68,7 @@ class LoadDir
       parser = CssParser::Parser.new
       parser.load_file!(file, path, :all)
       parser.each_selector(:all) do |selector, dec, spec|
-        unless /(^\/|\$|@)/.match(selector)
+        unless /(^\/|\$)/.match(selector)
           hash[selector] = dec 
         end
       end
@@ -86,9 +86,10 @@ class LoadDir
 
   def empty_css
     hash = {}
-    empty = self.parse_css.flatten - self.found_css.flatten
-    empty = empty.each_slice(2).to_a
-    empty.each {|sel| sel.each{hash[sel.first] = sel.last}}
+    all = self.parse_css.inject([]) {|a, k| a << k} 
+    found = self.found_css.inject([]) {|a, k| a << k}
+    empty = all - found
+    empty.each {|arr| hash[arr.first] = arr.last}
     hash
   end
 end

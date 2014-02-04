@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["hayduke19us"]
   s.date = "2014-02-04"
-  s.description = "Rails helper. Finds your irrelevent styles and creates a html report to keep you informed."
+  s.description = "Parses your html views and css stylesheets finding the \n  the styles that are no longer attached to a node. "
   s.email = "hayduke19us@gmail.com"
   s.executables = ["old_style"]
   s.extra_rdoc_files = [

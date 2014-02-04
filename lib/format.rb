@@ -43,6 +43,7 @@ class Format
       file.syswrite "<li style='color:red;'>#{style} {#{desc}}</li>"
     end
     file.syswrite "</div>"
+    puts "Your report was generated at #{Dir.pwd} + /old_style/index.html"
   end
 
   def good_percent

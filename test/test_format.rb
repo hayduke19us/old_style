@@ -5,7 +5,10 @@ class FormatTest < MiniTest::Test
   def setup
     @format = Format.new(found: {"#salinger" => "color: blue",
                                  "#test" => "height: 10px;"},
-                         empty: {".zooey" => "width: 20px"})
+                         empty: {".zooey" => "width: 20px"},
+                         css_files: {"fake3.css" => "path/"},
+                         html_files: {"fake.html" => "path/"},
+                         directories: ["fake"])
     @format.write_index
   end
 

@@ -39,8 +39,8 @@ class LoadDirTest < MiniTest::Test
     assert @load_dir.html?(file)
   end
 
-  def test_html_directories_and_css_directories_extracts_files
-    assert_equal 4, @load_dir.files.count
+  def test_css_directories_pick_the_right_directories
+    assert_equal 2, @load_dir.css.count
   end
 
   def test_segregate_puts_css_files_in_an_array

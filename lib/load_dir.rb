@@ -31,9 +31,7 @@ class LoadDir
     # an argument of file, base_directory, media_type
     # The path can't include the file
     Dir.foreach(CSS_PATH) do |file|
-      if file =~ /#{@directories.each {|dir| dir}}/
-        @files[file] = CSS_PATH
-      end
+      @directories.each {|dir| @files[file] = CSS_PATH if /#{dir}/.match(file)}
     end
   end
 

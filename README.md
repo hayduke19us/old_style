@@ -23,6 +23,8 @@ If all went well a old_style/index.html file has been generated in the root of y
 
 	open old_style/index.html
 
+![example index](http://i.imgur.com/aWWNLKu.png)
+
 ####Future Features
 
 * I'm hoping to add some more useful functions to the rendered index.html.

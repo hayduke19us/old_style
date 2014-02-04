@@ -2,8 +2,8 @@ require 'css_parser'
 require 'nokogiri'
 
 class LoadDir
-  HTML_PATH = File.expand_path(Dir.pwd + '/app/views', __FILE__)
-  CSS_PATH = File.expand_path(Dir.pwd + '/app/assets/stylesheets', __FILE__)
+  HTML_PATH = File.expand_path(Dir.pwd + '/app/views')
+  CSS_PATH = File.expand_path(Dir.pwd + '/app/assets/stylesheets')
 
   include CssParser
 
@@ -32,9 +32,9 @@ class LoadDir
     # It only includes the directory because the css parser requires
     # an argument of file, base_directory, media_type
     # The path can't include the file
-    @directories.each do |dir|
-      Dir.foreach(CSS_PATH + "/#{dir}") do |file|
-        @files[file] = CSS_PATH + "/#{dir}" unless /^\./.match(file)
+    Dir.foreach(CSS_PATH) do |file|
+      if file =~ /#{@directories.each {|dir| dir}}/
+        @files[file] = CSS_PATH
       end
     end
   end

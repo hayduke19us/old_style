@@ -3,6 +3,8 @@ require 'helper'
 class LoadDirTest < MiniTest::Test
   def setup
     @load_dir = LoadDir.new("fake") 
+    @load_dir.html_directories
+    @load_dir.css_directories
     @load_dir.segregate
     @load_dir.parse_html
   end
@@ -49,7 +51,7 @@ class LoadDirTest < MiniTest::Test
     assert_equal 2, @load_dir.html.count
   end
 
-  def test_parse_css_returns_hash_of_all_selectors_no_comments
+  def test_parse_css_returns_hash_of_all_selectors_no_comments_no_LESS
     assert_equal %w[#salinger .franny #franny .zooey], @load_dir.parse_css.keys
   end
 

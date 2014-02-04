@@ -1,0 +1,11 @@
+/* a great author*/ 
+#salinger {color: blue}
+
+/*LESS*/
+
+$shadow {box-shadow: 1px 1px 1px #efefef;}
+@mixin border-raius($radius) {
+  border-radius: $radius
+}
+
+

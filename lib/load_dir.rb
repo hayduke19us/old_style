@@ -15,8 +15,6 @@ class LoadDir
     @css = {}
     @html = {}
     @html_css = {}
-    html_directories
-    css_directories
   end
 
   def html_directories
@@ -70,7 +68,9 @@ class LoadDir
       parser = CssParser::Parser.new
       parser.load_file!(file, path, :all)
       parser.each_selector(:all) do |selector, dec, spec|
-        hash[selector] = dec unless /^\//.match(selector)
+        unless /(^\/|\$|@)/.match(selector)
+          hash[selector] = dec 
+        end
       end
     end
     hash

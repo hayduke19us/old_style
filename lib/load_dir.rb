@@ -66,7 +66,7 @@ class LoadDir
       parser = CssParser::Parser.new
       parser.load_file!(file, path, :all)
       parser.each_selector(:all) do |selector, dec, spec|
-        unless /(^\/|\$|@)/.match(selector)
+        unless /(^\/|\$|@|\d)/.match(selector)
           hash[selector] = dec 
         end
       end

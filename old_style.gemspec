@@ -16,14 +16,14 @@ Gem::Specification.new do |s|
   s.executables = ["old_style"]
   s.extra_rdoc_files = [
     "LICENSE.txt",
-    "README.rdoc"
+    "README.md"
   ]
   s.files = [
     ".document",
     "Gemfile",
     "Gemfile.lock",
     "LICENSE.txt",
-    "README.rdoc",
+    "README.md",
     "Rakefile",
     "VERSION",
     "app/assets/stylesheets/fake3.css.scss",

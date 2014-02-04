@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
     "VERSION",
     "app/assets/stylesheets/fake3.css.scss",
     "app/assets/stylesheets/fake4.css",
+    "app/assets/stylesheets/test.css.scss",
     "app/views/fake/fake.html",
     "app/views/fake/fake2.html",
     "bin/old_style",

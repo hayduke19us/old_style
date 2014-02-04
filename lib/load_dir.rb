@@ -2,21 +2,19 @@ require 'css_parser'
 require 'nokogiri'
 
 class LoadDir
-  HTML_PATH = File.expand_path('../../app/views', __FILE__)
-  CSS_PATH = File.expand_path('../../app/assets/stylesheets', __FILE__)
+  HTML_PATH = File.expand_path(Dir.pwd + '/app/views')
+  CSS_PATH = File.expand_path(Dir.pwd + '/app/assets/stylesheets')
 
   include CssParser
 
   attr_accessor :directories, :files, :css, :html
 
   def initialize(*args)
-    @directories = args
+    @directories = args.flatten
     @files = {}
     @css = {}
     @html = {}
     @html_css = {}
-    html_directories
-    css_directories
   end
 
   def html_directories
@@ -32,10 +30,8 @@ class LoadDir
     # It only includes the directory because the css parser requires
     # an argument of file, base_directory, media_type
     # The path can't include the file
-    @directories.each do |dir|
-      Dir.foreach(CSS_PATH + "/#{dir}") do |file|
-        @files[file] = CSS_PATH + "/#{dir}" unless /^\./.match(file)
-      end
+    Dir.foreach(CSS_PATH) do |file|
+      @directories.each {|dir| @files[file] = CSS_PATH if /#{dir}/.match(file)}
     end
   end
 
@@ -70,7 +66,9 @@ class LoadDir
       parser = CssParser::Parser.new
       parser.load_file!(file, path, :all)
       parser.each_selector(:all) do |selector, dec, spec|
-        hash[selector] = dec unless /^\//.match(selector)
+        unless /(^\/|\$|@|\d|:hover)/.match(selector)
+          hash[selector] = dec 
+        end
       end
     end
     hash
@@ -86,9 +84,10 @@ class LoadDir
 
   def empty_css
     hash = {}
-    empty = self.parse_css.flatten - self.found_css.flatten
-    empty = empty.each_slice(2).to_a
-    empty.each {|sel| sel.each{hash[sel.first] = sel.last}}
+    all = self.parse_css.inject([]) {|a, k| a << k} 
+    found = self.found_css.inject([]) {|a, k| a << k}
+    empty = all - found
+    empty.each {|arr| hash[arr.first] = arr.last}
     hash
   end
 end

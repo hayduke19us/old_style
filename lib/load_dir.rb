@@ -3,7 +3,7 @@ require 'nokogiri'
 
 class LoadDir
   HTML_PATH = File.expand_path(Dir.pwd + '/app/views', __FILE__)
-  CSS_PATH = File.expand_path(Dir pwd + '/app/assets/stylesheets', __FILE__)
+  CSS_PATH = File.expand_path(Dir.pwd + '/app/assets/stylesheets', __FILE__)
 
   include CssParser
 

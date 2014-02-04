@@ -12,9 +12,8 @@ class Format
   def new_or_open_index
     unless File.directory?(PATH + "/old_style")
       Dir.mkdir(PATH + "/old_style")
-    else
-      File.open(PATH + "/old_style/index.html", 'w+')
     end
+    File.open(PATH + "/old_style/index.html", 'w+')
   end
 
   def write_index

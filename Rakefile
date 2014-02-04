@@ -18,8 +18,8 @@ Jeweler::Tasks.new do |gem|
   gem.homepage = "http://github.com/hayduke19us/old_style"
   gem.license = "MIT"
   gem.summary = %Q{Get rid of those old css styles}
-  gem.description = %Q{Parses your html views and css stylesheets finding the 
-  the styles that are no longer attached to a node. }
+  gem.description = %Q{Rails helper. Finds the irrelevent styles in your 
+  stylesheet and generates a html report to keep you informed.}
   gem.email = "hayduke19us@gmail.com"
   gem.authors = ["hayduke19us"]
   # dependencies defined in Gemfile

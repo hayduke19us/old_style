@@ -1,5 +1,5 @@
 class Format
-  PATH = File.expand_path('../../', __FILE__)
+  PATH = Dir.pwd 
   attr_reader :found, :empty
   attr_accessor :file
 

@@ -1,10 +1,10 @@
-= old_style
+# old_style
 
 I'm not the most organized person. It would be a big help to me if there was a helper to keep my stylesheets clean. old_style.gem helps you do that!
 old_style compares all of your styles with the differen nodes in your views.
 If old_style doesn't find a corresponding id or class or parent node in the html file it registers the style as **Bad**.
 
-##Setup is simple
+####Setup is simple
 	gem install 'old_style'
 	
 #### Commands 
@@ -29,7 +29,7 @@ If all went well a old_style/index.html file has been generated in the root of y
 * Better accuracy
 
 
-== Contributing to old_style
+####Contributing to old_style
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.

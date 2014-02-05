@@ -14,7 +14,6 @@ class LoadDir
     @files = {}
     @css = {}
     @html = {}
-    @html_css = {}
   end
 
   def html_directories

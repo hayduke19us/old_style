@@ -3,15 +3,13 @@ require 'helper'
 class LoadDirTest < MiniTest::Test
   def setup
     @load_dir = LoadDir.new("fake") 
-    @load_dir.segregate
-    @load_dir.parse_html
   end
 
   def test_HTML_PATH_should_be_for_views
     assert_equal '/Users/hayduke19us/my_gems/old_style/app/views', LoadDir::HTML_PATH 
   end
 
-  def teset_CSS_PATH_should_be_for_assets_stylesheets
+  def test_CSS_PATH_should_be_for_assets_stylesheets
     assert_equal '/Users/hayduke19us/my_gems/old_style/app/assets/stylesheets', LoadDir::CSS_PATH 
   end
 

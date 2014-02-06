@@ -34,36 +34,30 @@ class ParseDirTest < MiniTest::Test
    end
 
   def test_ParseDir#segregate_puts_css_files_in_an_array
-    @parse.segregate
     assert_equal 2, @parse.css.count
   end
  
-  def test_segregate_puts_html_files_in_an_array
-    @parse.segregate
+  def test_ParseDir#segregate_puts_html_files_in_an_array
     assert_equal 2, @parse.html.count
   end
 
- def test_parse_css_returns_hash_of_all_selectors_no_comments_no_SASS
-    @parse.segregate
+  def test_parse_css_returns_hash_of_all_selectors_no_comments_no_SASS
     assert_equal 5, @parse.parse_css.keys.count
- end
+  end
 
   def test_parse_hmtl_returns_collection_of_Nokogiri_Document_objects
-    @parse.segregate
-    @parse.parse_html
     assert_equal Nokogiri::HTML::Document, @parse.parse_html.first.class
   end
   
   def test_parse_html_and_html_attribute_has_same_number_of_objects
-    @parse.segregate
-    @parse.parse_html
     assert_equal @parse.html.count, @parse.parse_html.count 
   end
 
-  def test_empty_css_returns_a_hash_of_false_selectors
-    @parse.segregate
-    @parse.parse_html
+  def test_found_css_finds_the_relevent_css
+    assert_equal 2, @parse.found_css.keys.count
+  end
 
+  def test_empty_css_returns_a_hash_of_false_selectors
     assert_equal "#find", @parse.empty_css.keys.first
   end
 

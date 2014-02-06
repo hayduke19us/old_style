@@ -1,8 +1,15 @@
-require 'load_dir'
 
 class ParseDir < LoadDir
+
+  attr_accessor :css, :html
+
   def initialize(args)
     super(args)
+    @css = {}
+    @html = {}
+    self.segregate
+    self.parse_html
+    self.parse_css
   end
 
   def css?(file)

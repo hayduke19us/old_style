@@ -14,6 +14,8 @@ class LoadDir
     @files = {}
     @css = {}
     @html = {}
+    html_directories
+    css_directories
   end
 
   def html_directories
@@ -29,8 +31,10 @@ class LoadDir
     # It only includes the directory because the css parser requires
     # an argument of file, base_directory, media_type
     # The path can't include the file
-    Dir.foreach(CSS_PATH) do |file|
-      @directories.each {|dir| @files[file] = CSS_PATH if /#{dir}/.match(file)}
+    @directories.each do |dir|
+      Dir.foreach(CSS_PATH) do |file|
+        @files[file] = CSS_PATH if /#{dir}/.match(file)
+      end
     end
   end
 

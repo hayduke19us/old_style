@@ -3,8 +3,6 @@ require 'helper'
 class LoadDirTest < MiniTest::Test
   def setup
     @load_dir = LoadDir.new("fake") 
-    @load_dir.html_directories
-    @load_dir.css_directories
     @load_dir.segregate
     @load_dir.parse_html
   end
@@ -21,50 +19,8 @@ class LoadDirTest < MiniTest::Test
     assert @load_dir
   end
 
-  def test_LoadDir_takes_an_array_of_dir
-    assert_equal 1, @load_dir.directories.count
-  end
-
-  def test_true_if_css?
-    file = "playlist.html"
-    file_2 = "playlist.css"
-    refute @load_dir.css?(file)
-    assert @load_dir.css?(file_2)
-  end
-
-  def test_true_if_html?
-    file = "playlist.html"
-    file_2 = "playlist.css"
-    refute @load_dir.html?(file_2) 
-    assert @load_dir.html?(file)
-  end
-
-  def test_css_directories_pick_the_right_directories
-    assert_equal 2, @load_dir.css.count
-  end
-
-  def test_segregate_puts_css_files_in_an_array
-    assert_equal 2, @load_dir.css.count
-  end
-
-  def test_segregate_puts_html_files_in_an_array
-    assert_equal 2, @load_dir.html.count
-  end
-
-  def test_parse_css_returns_hash_of_all_selectors_no_comments_no_SASS
-    assert_equal %w[#salinger #find .franny #franny .zooey], @load_dir.parse_css.keys
-  end
-
-  def test_parse_hmtl_returns_collection_of_Nokogiri_Document_objects
-    assert_equal Nokogiri::HTML::Document, @load_dir.parse_html.first.class
-  end
-
-  def test_parse_html_and_html_attribute_has_same_number_of_objects
-    assert_equal @load_dir.html.count, @load_dir.parse_html.count 
-  end
-
-  def test_empty_css_returns_a_hash_of_false_selectors
-    assert_equal "#find", @load_dir.empty_css.keys.first
+  def test_LoadDir_args_is_an_array_of_dir
+    assert_equal Array, @load_dir.directories.class
   end
 
 end

@@ -20,6 +20,7 @@ module Format
   end
 
   def write_index
+    create_css_file
     file = new_or_open_index
     file.write "<head>"
     file.write "<link rel='stylesheet' type='text/css' href=#{css_path}>"

@@ -1,5 +1,7 @@
 require 'nokogiri'
 require 'css_parser'
+require 'load_dir'
+require 'format'
 
 class ParseDir < LoadDir
   include Format

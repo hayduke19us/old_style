@@ -1,5 +1,9 @@
+require 'nokogiri'
+require 'css_parser'
 
 class ParseDir < LoadDir
+  include Format
+  include CssParser
 
   attr_accessor :css, :html
 
@@ -51,7 +55,7 @@ class ParseDir < LoadDir
     hash
   end
 
-  def found_css
+  def found
     tmp = {}
     self.parse_html.each do |doc|
       self.parse_css.each {|sel, des| tmp[sel] = des unless doc.css(sel).empty?}
@@ -59,12 +63,12 @@ class ParseDir < LoadDir
     tmp
   end
 
-  def empty_css
+  def empty
     hash = {}
     all = self.parse_css.inject([]) {|a, k| a << k}
-    found = self.found_css.inject([]) {|a, k| a << k}
-    empty = all - found
-    empty.each {|arr| hash[arr.first] = arr.last}
+    found_css = self.found.inject([]) {|a, k| a << k}
+    empty_css = all - found_css
+    empty_css.each {|arr| hash[arr.first] = arr.last}
     hash
   end
 

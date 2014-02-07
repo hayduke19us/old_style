@@ -1,11 +1,8 @@
-require 'css_parser'
-require 'nokogiri'
 
 class LoadDir
   HTML_PATH = File.expand_path(Dir.pwd + '/app/views')
   CSS_PATH = File.expand_path(Dir.pwd + '/app/assets/stylesheets')
 
-  include CssParser
 
   attr_accessor :directories, :files
 

@@ -1,0 +1,9 @@
+#content {padding: 5%;
+          line-height: 1.4;
+}
+
+#dir-heading {border-bottom: 1px solid #efefef;}
+
+li {list-style: none;}
+
+a {text-decoration: none;}

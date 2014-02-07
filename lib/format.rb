@@ -9,13 +9,26 @@ module Format
     File.open(PATH + "/old_style/index.html", 'w+')
   end
 
+  def create_css_file
+    unless File.exist?(css_path) 
+      @css_file ||= File.new(css_path)
+    end
+  end
+
+  def css_path
+    PATH + "/old_style/index.css"
+  end
+
   def write_index
     file = new_or_open_index
-    file.write "<div id='content' style='padding:5%;line-height:1.4;'>"
-    file.write "<h2 style='border-bottom: 1px solid #efefef;'>#{self.directories}</h2>"
+    file.write "<head>"
+    file.write "<link rel='stylesheet' type='text/css' href=#{css_path}>"
+    file.write "</head>"
+    file.write "<div id='content'>"
+    file.write "<h2 id='dir-heading'>#{self.directories}</h2>"
     file.write "<h4>Looked in:</h4>"
-    self.css.each do |css|
-      file.write "<li>#{css}</li>"
+    self.css.each do |css, path|
+      file.write "<li id='css_file'><a href=#{path}/#{css}>#{css}<a></li>"
     end
     self.html.each do |html|
       file.write "<li>#{html}</li>"

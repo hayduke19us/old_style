@@ -11,7 +11,7 @@ module Format
 
   def create_css_file
     unless File.exist?(css_path) 
-      @css_file ||= File.new(css_path)
+      @css_file ||= File.new(css_path, 'w+')
     end
   end
 

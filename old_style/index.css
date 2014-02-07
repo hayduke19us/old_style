@@ -1,20 +1,20 @@
-#content {padding: 5%;
-          line-height: 1.4;
-}
+ 
+      #content {padding: 5%;
+                line-height: 1.4;
+      }
 
-#dir-heading {border-bottom: 1px solid #efefef;}
+      #dir-heading {border-bottom: 1px solid #efefef;}
 
-li {list-style: none;}
+      li {list-style: none;}
 
-a {text-decoration: none;
-   color: black;
-}
-#css_file:hover {color: blue;}
-#html_file:hover {color: blue;}
+      a {text-decoration: none;
+         color: black;
+      }
+      #css_file:hover {color: blue;}
+      #html_file:hover {color: blue;}
 
-#found_css {border-bottom: 1px solid #efefef;}
-#empty_css {border-bottom: 1px solid #efefef;}
+      #found_css {border-bottom: 1px solid #efefef;}
+      #empty_css {border-bottom: 1px solid #efefef;}
 
-#style {color: green;}
-#empty_style {color: red;}
-
+      #style {color: green;}
+      #empty_style {color: red;} 

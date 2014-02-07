@@ -11,7 +11,9 @@ module Format
 
   def create_css_file
     unless File.exist?(css_path) 
-      @css_file ||= File.new(css_path, 'w+')
+      File.new(css_path, 'w+')
+    else
+      File.new(css_path, 'w+')
     end
   end
 
@@ -19,8 +21,33 @@ module Format
     PATH + "/old_style/index.css"
   end
 
+  def write_css
+    file = create_css_file
+    file.write %s{ 
+      #content {padding: 5%;
+                line-height: 1.4;
+      }
+
+      #dir-heading {border-bottom: 1px solid #efefef;}
+
+      li {list-style: none;}
+
+      a {text-decoration: none;
+         color: black;
+      }
+      #css_file:hover {color: blue;}
+      #html_file:hover {color: blue;}
+
+      #found_css {border-bottom: 1px solid #efefef;}
+      #empty_css {border-bottom: 1px solid #efefef;}
+
+      #style {color: green;}
+      #empty_style {color: red;} }
+  end
+
   def write_index
     create_css_file
+    write_css
     file = new_or_open_index
     file.write "<head>"
     file.write "<link rel='stylesheet' type='text/css' href=#{css_path}>"

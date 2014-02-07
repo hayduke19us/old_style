@@ -6,4 +6,15 @@
 
 li {list-style: none;}
 
-a {text-decoration: none;}
+a {text-decoration: none;
+   color: black;
+}
+#css_file:hover {color: blue;}
+#html_file:hover {color: blue;}
+
+#found_css {border-bottom: 1px solid #efefef;}
+#empty_css {border-bottom: 1px solid #efefef;}
+
+#style {color: green;}
+#empty_style {color: red;}
+

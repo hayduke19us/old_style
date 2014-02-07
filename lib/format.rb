@@ -28,22 +28,23 @@ module Format
     file.write "<h2 id='dir-heading'>#{self.directories}</h2>"
     file.write "<h4>Looked in:</h4>"
     self.css.each do |css, path|
-      file.write "<li id='css_file'><a href=#{path}/#{css}>#{css}<a></li>"
+      file.write "<li><a id='css_file' href=#{path}/#{css}>#{css}<a></li>"
     end
-    self.html.each do |html|
-      file.write "<li>#{html}</li>"
+    self.html.each do |html, path|
+      file.write "<li><a id='html_file' href=#{path}>#{html}<a></li>"
+
     end
-    file.write "<h4 style='border-bottom: 1px solid #efefef;'>Good</h4>"
+    file.write "<h4 id='found_css'>Good</h4>"
     file.write "#{self.good_percent}"
 
     self.found.each do |style, desc|
-      file.write "<li style='color:green;'>#{style} {#{desc}}</li>"
+      file.write "<li id='style'>#{style} {#{desc}}</li>"
     end
 
-    file.write "<h4 style='border-bottom: 1px solid #efefef;'>Bad</h4>"
+    file.write "<h4 id='empty_css'>Bad</h4>"
     file.write "#{self.bad_percent}"
     self.empty.each do |style, desc|
-      file.write "<li style='color:red;'>#{style} {#{desc}}</li>"
+      file.write "<li id='empty_style'>#{style} {#{desc}}</li>"
     end
     file.write "</div>"
     puts "Your report was generated at #{Dir.pwd}/old_style/index.html"

@@ -27,7 +27,9 @@ module Format
     a {text-decoration: none;
      }
 
-    body {background-color: #efefef;}
+    body {background-color: #efefef;
+          padding-bottom: 100px;
+    }
     #content {padding: 5%;
               line-height: 1.4;
               font-family: "HelveticaNeue-Light", 

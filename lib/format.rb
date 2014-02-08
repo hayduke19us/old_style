@@ -78,10 +78,11 @@ module Format
     file.write "<li id='found-css'>Good</li>"
     file.write "<li id='good-percent'> #{self.good_percent}</li>"
     file.write "</div>"
-
+    file.write "<div id='found-style-wrapper'>"
     self.found.each do |style, desc|
       file.write "<li id='style'>#{style} {#{desc}}</li>"
     end
+    file.write "</div>"
     file.write "</div>"
 
     file.write "<div id='empty-wrapper'>"
@@ -89,9 +90,11 @@ module Format
     file.write "<h4 id='empty-css'>Bad</h4>"
     file.write "<li id='bad-percent'> #{self.bad_percent}</li>"
     file.write "</div>"
+    file.write "<div id='empty-style-wrapper'>"
     self.empty.each do |style, desc|
       file.write "<li id='empty_style'>#{style} {#{desc}}</li>"
     end
+    file.write "</div>"
     file.write "</div>"
     file.write "</div>"
     true

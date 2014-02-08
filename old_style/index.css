@@ -3,6 +3,8 @@ li {list-style: none;}
 
 a {text-decoration: none;
  }
+
+body {background-color: #efefef;}
 #content {padding: 5%;
           line-height: 1.4;
           font-family: "HelveticaNeue-Light", 
@@ -18,7 +20,7 @@ a {text-decoration: none;
 
 
 
-#dir-heading {border-bottom: 1px solid #efefef;}
+#dir-heading {border-bottom: 1px solid #cccaca;}
 
 #looked-in {width:100%;
             padding-bottom: 50px;
@@ -26,13 +28,20 @@ a {text-decoration: none;
 
 #looked-css {width: 200px;
              float: left;
-             border-right: 2px solid #efefef;
+             border-right: 2px solid #cccaca;
              padding-right: 10px;
 }
 
-#css-heading {border-bottom: 1px solid #efefef;}
+#css-heading {border-bottom: 1px solid #cccaca;
+              font-size: 20px;
+              font-weight: bold;
 
-#html-heading {border-bottom: 1px solid #efefef;}
+}
+
+#html-heading {border-bottom: 1px solid #cccaca;
+               font-size: 20px;
+               font-weight: bold;
+}
 #looked-html {width: 200px;
               float: left;
               padding-left: 10px;
@@ -47,7 +56,7 @@ a {text-decoration: none;
                color: green;
 }
 
-#found-title-wrapper {border-bottom: 1px solid #efefef;}
+#found-title-wrapper {border-bottom: 1px solid #cccaca;}
 
 
 #found-css {padding-right: 10px;
@@ -60,9 +69,16 @@ a {text-decoration: none;
                color: black;
 }
 
-#empty-wrapper {color: red}
+#found-style-wrapper {padding-top:10px;}
 
-#empty-title-wrapper {border-bottom: 1px solid #efefef;}
+#empty-wrapper {color: red;
+                float: left;
+                width: 100%;
+}
+
+#empty-title-wrapper {border-bottom: 1px solid #cccaca;
+
+}
 
 #empty-css {padding-right: 10px;
             display: inline;
@@ -74,6 +90,8 @@ a {text-decoration: none;
 #bad-percent {display: inline;
               color: black;
 }
+
+#empty-style-wrapper {padding-top: 10px;}
 
 #style {color: green;}
 #empty_style {color: red;} 

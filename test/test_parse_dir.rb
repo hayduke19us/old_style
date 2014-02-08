@@ -61,13 +61,17 @@ class ParseDirTest < MiniTest::Test
   def test_empty_css_returns_a_hash_of_false_selectors
     assert_equal "#find", @parse.empty.keys.first
   end
-
-  def test_mixin
-    assert @parse.write_index
+  
+  def test_if_Format#write_index_returns_true
+    assert_equal true, @parse.write_index
   end
 
   def test_good_percent
     assert_equal "40.0%", @parse.good_percent
+  end
+
+  def test_success_message_if_Format#write_index_is_true
+    assert @parse.success?
   end
 
 end

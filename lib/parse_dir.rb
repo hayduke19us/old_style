@@ -74,4 +74,24 @@ class ParseDir < LoadDir
     hash
   end
 
+  def success?
+    if self.write_index
+     ParseDir.success_message
+    else
+     ParseDir.failure_message
+    end
+  end
+
+  def self.success_message
+   puts Time.now.strftime("%B %d %Y %r")
+   puts "Your report was generated at #{Dir.pwd}/old_style/index/html"
+   true
+  end
+
+  def self.failure_message
+   puts "Something went wronng :("
+   puts  "Make sure you are in the root of your directory, and the controller exist."
+   true 
+  end
+
 end

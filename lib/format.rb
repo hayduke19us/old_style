@@ -55,6 +55,7 @@ module Format
     file.write "<div id='content'>"
     file.write "<h2 id='dir-heading'>#{self.directories}</h2>"
     file.write "<h4>Looked in:</h4>"
+    file.write "<div id='looked_in'>"
     self.css.each do |css, path|
       file.write "<li><a id='css_file' href=#{path}/#{css}>#{css}<a></li>"
     end
@@ -62,6 +63,7 @@ module Format
       file.write "<li><a id='html_file' href=#{path}>#{html}<a></li>"
 
     end
+    file.write "</div>"
     file.write "<h4 id='found_css'>Good</h4>"
     file.write "#{self.good_percent}"
 

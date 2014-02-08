@@ -2,4 +2,4 @@ $: << File.expand_path('../../lib', __FILE__)
 require 'parse_dir'
 
 parse = ParseDir.new(ARGV)
-parse.write_index
+parse.success?

@@ -9,11 +9,10 @@ module Format
     File.open(PATH + "/old_style/index.html", 'w+')
   end
 
-  def create_css_file
+  def create_css_file?
     unless File.exist?(css_path) 
-      File.new(css_path, 'w+')
-    else
-      File.new(css_path, 'w+')
+      file =  File.new(css_path, 'w+')
+      write_css(file)
     end
   end
 
@@ -21,8 +20,7 @@ module Format
     PATH + "/old_style/index.css"
   end
 
-  def write_css
-    file = create_css_file
+  def write_css(file)
     file.write %s{ 
       #content {padding: 5%;
                 line-height: 1.4;
@@ -46,8 +44,7 @@ module Format
   end
 
   def write_index
-    create_css_file
-    write_css
+    create_css_file?
     file = new_or_open_index
     file.write "<head>"
     file.write "<link rel='stylesheet' type='text/css' href=#{css_path}>"
@@ -77,7 +74,6 @@ module Format
       file.write "<li id='empty_style'>#{style} {#{desc}}</li>"
     end
     file.write "</div>"
-    puts "Your report was generated at #{Dir.pwd}/old_style/index.html"
     true
   end
 

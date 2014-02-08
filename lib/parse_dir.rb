@@ -77,6 +77,8 @@ class ParseDir < LoadDir
   def success?
     if self.write_index
      ParseDir.success_message
+    else
+     ParseDir.failure_message
     end
   end
 

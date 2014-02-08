@@ -1,20 +1,13 @@
 # old_style for Rails
-- - - 
-
-####[Setup][section-setup]
-####[Commands][section-commands]
-####[Updates][section-updates]
-
-- - - 
 
 I'm not the most organized person. It would be a big help to me if there was a helper to keep my stylesheets clean. old_style.gem helps you do that!
 old_style compares all of your styles with the differen nodes in your views.
 If old_style doesn't find a corresponding id or class or parent node in the html file it registers the style as **Bad**.
 
-####Setup is simple[section-setup]
+####Setup is simple
 	gem install 'old_style'
 	
-#### Commands[section-commands] 
+#### Commands
 ###### *In the root of your project
 	old_style 'some controller name that has views and stylesheets'
 
@@ -30,9 +23,9 @@ If all went well an old_style/index.html file has been generated in the root of 
 
 	open old_style/index.html
 
-![example index](http://i.imgur.com/aWWNLKu.png)
+![example index](http://i.imgur.com/mGGpY8m.png)
 
-####Updates[section-updates]
+####Updates
 
 ######Version 1.1.5
  * Nicer old_style/index.html view

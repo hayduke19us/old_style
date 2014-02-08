@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["hayduke19us"]
-  s.date = "2014-02-04"
+  s.date = "2014-02-08"
   s.description = "Rails helper. Finds the irrelevent styles in your \n  stylesheet and generates a html report to keep you informed."
   s.email = "hayduke19us@gmail.com"
   s.executables = ["old_style"]
@@ -28,19 +28,21 @@ Gem::Specification.new do |s|
     "VERSION",
     "app/assets/stylesheets/fake3.css.scss",
     "app/assets/stylesheets/fake4.css",
-    "app/assets/stylesheets/test.css.scss",
     "app/views/fake/fake.html",
     "app/views/fake/fake2.html",
     "bin/old_style",
     "lib/format.rb",
     "lib/load_dir.rb",
     "lib/old_style.rb",
+    "lib/parse_dir.rb",
     "old_style.gemspec",
+    "old_style/index.css",
     "old_style/index.html",
     "test/helper.rb",
     "test/test_format.rb",
     "test/test_load_dir.rb",
-    "test/test_old_style.rb"
+    "test/test_old_style.rb",
+    "test/test_parse_dir.rb"
   ]
   s.homepage = "http://github.com/hayduke19us/old_style"
   s.licenses = ["MIT"]

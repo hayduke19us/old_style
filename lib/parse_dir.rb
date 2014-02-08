@@ -88,10 +88,4 @@ class ParseDir < LoadDir
    true
   end
 
-  def self.failure_message
-   puts "Something went wronng :("
-   puts  "Make sure you are in the root of your directory, and the controller exist."
-   true 
-  end
-
 end

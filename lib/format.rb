@@ -33,8 +33,8 @@ module Format
       a {text-decoration: none;
          color: black;
       }
-      #css_file:hover {color: blue;}
-      #html_file:hover {color: blue;}
+      #css-file:hover {color: blue;}
+      #html-file:hover {color: blue;}
 
       #found_css {border-bottom: 1px solid #efefef;}
       #empty_css {border-bottom: 1px solid #efefef;}
@@ -50,29 +50,49 @@ module Format
     file.write "<link rel='stylesheet' type='text/css' href=#{css_path}>"
     file.write "</head>"
     file.write "<div id='content'>"
+    file.write "<h1 id='main-heading'>
+                #{self.directories.count} Controller evaluated </h1>"
+    file.write "<div id='directories'>"
     file.write "<h2 id='dir-heading'>#{self.directories}</h2>"
-    file.write "<h4>Looked in:</h4>"
-    file.write "<div id='looked_in'>"
+    file.write "</div>"
+    file.write "<h4>#{self.css.count} css files compared to 
+    #{self.html.count} html files 
+    </h4>"
+    file.write "<div id='looked-in'>"
+    file.write "<div id='looked-css'>"
+    file.write "<div id='css-heading'>Css</div>"
     self.css.each do |css, path|
-      file.write "<li><a id='css_file' href=#{path}/#{css}>#{css}<a></li>"
+      file.write "<li><a id='css-file' href=#{path}/#{css}>#{css}<a></li>"
     end
+    file.write "</div>"
+    file.write "<div id='looked-html'>"
+    file.write "<div id='html-heading'>Html</div>"
     self.html.each do |html, path|
-      file.write "<li><a id='html_file' href=#{path}>#{html}<a></li>"
+      file.write "<li><a id='html-file' href=#{path}>#{html}<a></li>"
 
     end
     file.write "</div>"
-    file.write "<h4 id='found_css'>Good</h4>"
-    file.write "#{self.good_percent}"
+    file.write "</div>"
+    file.write "<div id='found-wrapper'>"
+    file.write "<div id='found-title-wrapper'>"
+    file.write "<li id='found-css'>Good</li>"
+    file.write "<li id='good-percent'> #{self.good_percent}</li>"
+    file.write "</div>"
 
     self.found.each do |style, desc|
       file.write "<li id='style'>#{style} {#{desc}}</li>"
     end
+    file.write "</div>"
 
-    file.write "<h4 id='empty_css'>Bad</h4>"
-    file.write "#{self.bad_percent}"
+    file.write "<div id='empty-wrapper'>"
+    file.write "<div id='empty-title-wrapper'>" 
+    file.write "<h4 id='empty-css'>Bad</h4>"
+    file.write "<li id='bad-percent'> #{self.bad_percent}</li>"
+    file.write "</div>"
     self.empty.each do |style, desc|
       file.write "<li id='empty_style'>#{style} {#{desc}}</li>"
     end
+    file.write "</div>"
     file.write "</div>"
     true
   end

@@ -37,14 +37,7 @@ class ParseDir < LoadDir
       end
     end
   end
-=begin
-  def parse_html
-    #call segregate first
-    self.html.inject([]) do |array, path|
-      array << Nokogiri::HTML(open(path.last))
-    end
-  end
-=end
+
   def parse_css
     hash = {}
     self.css.each do |file, path|
@@ -68,7 +61,7 @@ class ParseDir < LoadDir
   def found
     tmp = {}
     self.parse_html.flatten.each do |line|
-      self.parse_css.each do |sel, des| 
+      self.parse_css.each do |sel, des|
         if sel.match(/^\./)
           tmp[sel] = des if line.match(sel.gsub('.', 'class'))
         elsif sel.match("#")
@@ -79,15 +72,6 @@ class ParseDir < LoadDir
     tmp
   end
 
-=begin
-  def found
-    tmp = {}
-    self.parse_html.each do |doc|
-      self.parse_css.each {|sel, des| tmp[sel] = des unless doc.css(sel).empty?}
-    end
-    tmp
-  end
-=end
   def empty
     hash = {}
     all = self.parse_css.inject([]) {|a, k| a << k}

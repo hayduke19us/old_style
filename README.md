@@ -28,7 +28,13 @@ If all went well an old_style/index.html file has been generated in the root of 
 ####Updates
 I keep a [work blog](http://octopress.dev/blog/2014/01/30/old-style-dot-gem-work-blog/). But be gental this is just a place for me to write quickly as  I code. I'm a horrible speller.
 
-######Version 1.1.5
+######Version 1.2.0
+* got rid of nokogiri
+* Using an in house parser
+* parses erb,html,haml
+* better accuracy on comparing files
+
+######Version 1.1.0
  * Nicer old_style/index.html view
  *  Links to each compared file
  * Format moved to a module for better performance

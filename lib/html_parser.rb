@@ -1,5 +1,4 @@
 
-
 module HtmlParser
 
   def read_html file
@@ -8,7 +7,7 @@ module HtmlParser
 
   def remove_extras file
     #the whitespace first
-    read_html(file).map {|line| line.delete(" <%>:=''")}
+    read_html(file).map {|line| line.delete(" <%>:=''\"\" ")}
   end
 
   def selector_sub array

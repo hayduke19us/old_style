@@ -31,6 +31,7 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'load_dir'
 require 'format'
 require 'parse_dir'
+require 'html_parser'
 
 class MiniTest::Unit::TestCase
 end

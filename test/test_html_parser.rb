@@ -28,12 +28,16 @@ class KlassTest < Minitest::Test
 
   def test_selector_can_match_a_tag_in_the_html_erb_doc
     #and id of id: test-id id in the file
+    array = []
     remove_extras(@file).each do |line|
-      assert line.match('idtest-id'), "correct"
+      array << line if line.match(/(idtest-id|idpeace)/)
       refute line.match('idtear-id'), "incorrect match"
       refute line.match('idtesx-id'), "incorrect match"
       refute line.match('idtest-im'), "incorrect match"
     end
+
+    refute array.empty?, "correct match"
+    assert_equal 2, array.count
 
   end
 

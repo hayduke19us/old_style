@@ -46,8 +46,8 @@ I keep a [work blog](http://octopress.dev/blog/2014/01/30/old-style-dot-gem-work
 
 ####Future Features
 
-* I'm hoping to add some more useful functions to the rendered index.html.
-* Better accuracy
+* JS rendering of html file with hover affect from styles
+* possible chart of improvement
 
 
 ####Contributing to old_style

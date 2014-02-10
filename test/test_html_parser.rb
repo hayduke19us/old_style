@@ -19,11 +19,8 @@ class KlassTest < Minitest::Test
     refute remove_extras(@file).join.match(' ')
   end
 
-  def test_selector_sub_should_return_array_with_id_for_#
-    selectors = %w[#pl_name #gr_delete #user_title ]
-    new = %w[idpl_name idgr_delete iduser_title]
-
-    assert_equal new, selector_sub(selectors)
+  def test_extras_should_return_an_Array
+    assert_equal Array, remove_extras(@file).class
   end
 
   def test_selector_can_match_a_tag_in_the_html_erb_doc
@@ -38,7 +35,29 @@ class KlassTest < Minitest::Test
 
     refute array.empty?, "correct match"
     assert_equal 2, array.count
+  end
 
+  def test_#id_exists_then_return_true
+    assert_equal true, id_exists?("#test-id", @file)
+  end
+
+  def test_#id_doesn't_exist_returns_false
+    assert_equal false, id_exists?("#test-ix", @file)
+  end
+
+  def test_#class_exists_then_return_true
+    assert_equal true, class_exists?(".row", @file)  
+  end
+
+  def test_#class_doesn't_doesn't_exist_then_return_false
+    refute_equal true, class_exists?(".container", @file)
+  end
+
+  def test_using_#class_as_a_control_structure
+    if class_exists?(".container", @file) == true
+      success = true
+    end
+    refute_equal true,  success
   end
 
 end

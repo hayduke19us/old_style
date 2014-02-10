@@ -1,4 +1,3 @@
-require 'nokogiri'
 require 'css_parser'
 require 'load_dir'
 require 'format'
@@ -60,12 +59,12 @@ class ParseDir < LoadDir
 
   def found
     tmp = {}
-    self.parse_html.flatten.each do |line|
+    self.parse_html.each do |line|
       self.parse_css.each do |sel, des|
         if sel.match(/^\./)
-          tmp[sel] = des if line.match(sel.gsub('.', 'class'))
+          tmp[sel] = des if line.join.match(sel.gsub('.', 'class'))
         elsif sel.match("#")
-          tmp[sel] = des if line.match(sel.gsub('#', 'id'))
+          tmp[sel] = des if line.join.match(sel.gsub('#', 'id'))
         end
       end
     end

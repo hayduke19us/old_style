@@ -127,7 +127,7 @@ module Format
     file.write "<h1 id='main-heading'>
                 #{self.directories.count} Controller evaluated </h1>"
     file.write "<div id='directories'>"
-    file.write "<h2 id='dir-heading'>#{self.directories}</h2>"
+    file.write "<h2 id='dir-heading'>#{self.directories.sort_by{|x| x.downcase}}</h2>"
     file.write "</div>"
     file.write "<h4>#{self.css.count} css files compared to 
     #{self.html.count} html files 
@@ -153,7 +153,7 @@ module Format
     file.write "<li id='good-percent'> #{self.good_percent}</li>"
     file.write "</div>"
     file.write "<div id='found-style-wrapper'>"
-    self.found.each do |style, desc|
+    self.found.sort_by{|x| x.first.downcase}.each do |style, desc|
       file.write "<li id='style'>#{style} {#{desc}}</li>"
     end
     file.write "</div>"
@@ -165,7 +165,7 @@ module Format
     file.write "<li id='bad-percent'> #{self.bad_percent}</li>"
     file.write "</div>"
     file.write "<div id='empty-style-wrapper'>"
-    self.empty.each do |style, desc|
+    self.empty.sort_by{|x| x.first.downcase}.each do |style, desc|
       file.write "<li id='empty_style'>#{style} {#{desc}}</li>"
     end
     file.write "</div>"

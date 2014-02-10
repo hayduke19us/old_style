@@ -1,4 +1,5 @@
 require 'helper'
+require 'benchmark'
 
 class ParseDirTest < MiniTest::Test
 
@@ -69,5 +70,21 @@ class ParseDirTest < MiniTest::Test
   def test_success_message_if_Format#write_index_is_true
     assert @parse.success?
   end
+=begin
+  def test_performance_test_for_parse_html
+    n = 10000
+    Benchmark.bmbm do |x|
+      x.report("parse_html:") {n.times do @parse.parse_html end}
+    end
+  end
+
+  def test_performance_of_found
+    n = 10000
+    Benchmark.bmbm do |x|
+      x.report("found:") {n.times do @parse.found end}
+    end
+  end
+=end
+
 
 end

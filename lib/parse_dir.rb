@@ -15,7 +15,6 @@ class ParseDir < LoadDir
     @css = {}
     @html = {}
     self.segregate
-    self.parse_html
     self.parse_css
   end
 
@@ -51,6 +50,22 @@ class ParseDir < LoadDir
     hash
   end
 
+
+  def found hash=self.parse_css 
+    tmp = {}
+    self.html.each do |file|
+      hash.each do |sel, des|
+        if sel.match("#")
+          tmp[sel] = des if id_exists?(sel, file.last) == true
+        elsif sel.match(/^\./)
+          tmp[sel] = des if class_exists?(sel, file.last) == true
+        end
+      end
+    end
+    tmp
+  end
+
+=begin
   def parse_html
     self.html.inject([]) do |array, path|
       array << self.remove_extras(path.last)
@@ -70,6 +85,7 @@ class ParseDir < LoadDir
     end
     tmp
   end
+=end
 
   def empty
     hash = {}

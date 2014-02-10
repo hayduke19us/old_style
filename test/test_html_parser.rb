@@ -60,4 +60,8 @@ class KlassTest < Minitest::Test
     refute_equal true,  success
   end
 
+  def test_id_exists
+   assert_equal true, id_exists?("#test-id", @file)
+  end
+
 end

@@ -47,8 +47,9 @@ class ParseDirTest < MiniTest::Test
     assert_equal 6, @parse.parse_css.keys.count
   end
 
-  def test_parse_html_and_html_attribute_has_same_number_of_objects
-    assert_equal @parse.html.count, @parse.parse_html.count
+  def test_parse_css_keys_content
+    array = ["#salinger", "#find", ".franny", "#franny", ".zooey", "#test-id"] 
+    assert_equal array, @parse.parse_css.keys
   end
 
   def test_found_css_finds_the_relevent_css
@@ -70,6 +71,7 @@ class ParseDirTest < MiniTest::Test
   def test_success_message_if_Format#write_index_is_true
     assert @parse.success?
   end
+
 =begin
   def test_performance_test_for_parse_html
     n = 10000
@@ -77,14 +79,19 @@ class ParseDirTest < MiniTest::Test
       x.report("parse_html:") {n.times do @parse.parse_html end}
     end
   end
-
+  
   def test_performance_of_found
     n = 10000
     Benchmark.bmbm do |x|
       x.report("found:") {n.times do @parse.found end}
     end
   end
-=end
-
+=end 
+  def test_performace_of_found_experiment
+    n = 10000
+    Benchmark.bmbm do |x|
+      x.report("exp:") {n.times do @parse.found end}
+    end
+  end
 
 end

@@ -20,7 +20,7 @@ module HtmlParser
   end
 
   def class_exists? tag, file
-    tag = tag.gsub('.', 'class')
+    tag = tag.gsub('.', 'class') if tag.match(/^./)
     remove_extras(file).each do |line|
       if line.match(tag)
         return true
@@ -29,6 +29,7 @@ module HtmlParser
   end
 
   def parent_exists? tag, file
+    tag = tag.gsub('div.', 'class') if tag.match(/div/)
     remove_extras(file).each do |line|
       if line.match(tag)
         return true

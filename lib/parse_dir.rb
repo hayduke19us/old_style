@@ -58,6 +58,8 @@ class ParseDir < LoadDir
           tmp[sel] = des if id_exists?(sel, file.last) == true
         elsif sel.match(/^\./)
           tmp[sel] = des if class_exists?(sel, file.last) == true
+        elsif sel.match(/^\w/)
+          tmp[sel] = des if  parent_exists?(sel, file.last) == true
         end
       end
     end

@@ -72,26 +72,14 @@ class ParseDirTest < MiniTest::Test
     assert @parse.success?
   end
 
+#Preformance
 =begin
-  def test_performance_test_for_parse_html
-    n = 10000
-    Benchmark.bmbm do |x|
-      x.report("parse_html:") {n.times do @parse.parse_html end}
-    end
-  end
-  
   def test_performance_of_found
     n = 10000
     Benchmark.bmbm do |x|
       x.report("found:") {n.times do @parse.found end}
     end
   end
-
-  def test_performace_of_found_experiment
-    n = 10000
-    Benchmark.bmbm do |x|
-      x.report("exp:") {n.times do @parse.found end}
-    end
-  end
 =end
+
 end

@@ -7,7 +7,7 @@ module HtmlParser
 
   def remove_extras file
     #the whitespace first
-    read_html(file).map {|line| line.delete(" <%>:=''\"\" ")}
+    read_html(file).map {|line| line.delete(" <%>:=''\"\"")}
   end
 
   def id_exists? tag, file
@@ -21,6 +21,14 @@ module HtmlParser
 
   def class_exists? tag, file
     tag = tag.gsub('.', 'class')
+    remove_extras(file).each do |line|
+      if line.match(tag)
+        return true
+      end
+    end
+  end
+
+  def parent_exists? tag, file
     remove_extras(file).each do |line|
       if line.match(tag)
         return true

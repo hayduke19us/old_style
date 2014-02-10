@@ -86,12 +86,12 @@ class ParseDirTest < MiniTest::Test
       x.report("found:") {n.times do @parse.found end}
     end
   end
-=end 
+
   def test_performace_of_found_experiment
     n = 10000
     Benchmark.bmbm do |x|
       x.report("exp:") {n.times do @parse.found end}
     end
   end
-
+=end
 end

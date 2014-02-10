@@ -50,7 +50,6 @@ class ParseDir < LoadDir
     hash
   end
 
-
   def found hash=self.parse_css 
     tmp = {}
     self.html.each do |file|
@@ -64,28 +63,6 @@ class ParseDir < LoadDir
     end
     tmp
   end
-
-=begin
-  def parse_html
-    self.html.inject([]) do |array, path|
-      array << self.remove_extras(path.last)
-    end
-  end
-
-  def found
-    tmp = {}
-    self.parse_html.each do |line|
-      self.parse_css.each do |sel, des|
-        if sel.match(/^\./)
-          tmp[sel] = des if line.join.match(sel.gsub('.', 'class'))
-        elsif sel.match("#")
-          tmp[sel] = des if line.join.match(sel.gsub('#', 'id'))
-        end
-      end
-    end
-    tmp
-  end
-=end
 
   def empty
     hash = {}

@@ -28,6 +28,10 @@ If all went well an old_style/index.html file has been generated in the root of 
 ####Updates
 I keep a [work blog](http://octopress.dev/blog/2014/01/30/old-style-dot-gem-work-blog/). But be gental this is just a place for me to write quickly as  I code. I'm a horrible speller.
 
+######Version 1.3.1
+* performance boost by two seconds
+* fixed bug. Can now find tags like 'div.something'
+
 ######Version 1.2.1
 * sorted list of styles
 

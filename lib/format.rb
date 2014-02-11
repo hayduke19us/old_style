@@ -11,8 +11,7 @@ module Format
   end
 
   def create_css_file?
-    unless File.exist?(css_path) &&
-      File.readlines(BASE).count == File.readlines(css_path)
+    unless File.readlines(BASE).count == File.readlines(css_path)
       file = File.new(css_path, 'w+')
       write_css
     end
@@ -35,7 +34,7 @@ module Format
     file = new_or_open_index
     file.write "<div id='header'>"
     file.write "<li id='main-heading'>
-                #{self.directories.count} Controllers evaluated </li>"
+                #{self.directories.count} Controller evaluated </li>"
     file.write "</div>"
     file.write "<body>"
     file.write "<head>"

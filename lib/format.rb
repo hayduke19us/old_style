@@ -10,7 +10,8 @@ module Format
   end
 
   def create_css_file?
-    unless File.exist?(css_path) 
+    unless File.exist?(css_path) && 
+      File.readlines('base.css').count == File.readlines(css_path).count   
       file = File.new(css_path, 'w+')
       write_css
     end
@@ -31,12 +32,15 @@ module Format
   def write_index
     create_css_file?
     file = new_or_open_index
+    file.write "<div id='header'>"
+    file.write "<li id='main-heading'>
+                #{self.directories.count} Controller evaluated </li>"
+    file.write "</div>"
+    file.write "<body>"
     file.write "<head>"
     file.write "<link rel='stylesheet' type='text/css' href=#{css_path}>"
     file.write "</head>"
     file.write "<div id='content'>"
-    file.write "<h1 id='main-heading'>
-                #{self.directories.count} Controller evaluated </h1>"
     file.write "<div id='directories'>"
     file.write "<h2 id='dir-heading'>#{self.directories.sort_by{|x| x.downcase}}</h2>"
     file.write "</div>"
@@ -80,6 +84,14 @@ module Format
       file.write "<li id='empty_style'>#{style} {#{desc}}</li>"
     end
     file.write "</div>"
+    file.write "</div>"
+    file.write "</div>"
+    file.write "</body>"
+    file.write "<div id='footer'>"
+    file.write "<div id='footer-info'>"
+    file.write "<li id='footer-caption'>If you find any issues please let me know
+                    at </li>"
+    file.write "<a id ='issues-link' href = 'https://github.com/hayduke19us/old_style/issues?state=open'>old_style's issues page on github<a>"
     file.write "</div>"
     file.write "</div>"
     true

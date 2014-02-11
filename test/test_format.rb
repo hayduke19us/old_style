@@ -27,7 +27,7 @@ module Format
     end
 
     def test_base_file_can_be_read
-      assert_equal 95, File.readlines("base.css").count
+      assert_equal 131, File.readlines("base.css").count
     end
 
     # the following two test are in sequence
@@ -44,7 +44,7 @@ module Format
     def test_file_index_css_has_lines
       #write the css from base.css file in gem
       write_css
-      assert_equal 95, File.readlines(css_path).count
+      assert_equal 131, File.readlines(css_path).count
     end
 
   end

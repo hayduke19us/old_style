@@ -13,10 +13,6 @@ class LoadDirTest < MiniTest::Test
     assert_equal '/Users/hayduke19us/my_gems/old_style/app/assets/stylesheets', LoadDir::CSS_PATH 
   end
 
-  def test_LoadDir_is_valid
-    assert @load_dir
-  end
-
   def test_LoadDir_args_is_an_array_of_dir
     assert_equal Array, @load_dir.directories.class
   end
@@ -25,9 +21,8 @@ class LoadDirTest < MiniTest::Test
     assert_equal 1, @load_dir.directories.count
   end
 
-  def test_html_file_count_is_proper_shoud_be_2
+  def test_html_files_attribute_is_populated_after_initialization
     assert_equal 4, @load_dir.files.keys.count
   end
-
 
 end

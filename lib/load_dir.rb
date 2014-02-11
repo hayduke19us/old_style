@@ -1,22 +1,31 @@
 
 class LoadDir
-  HTML_PATH = File.expand_path(Dir.pwd + '/app/views')
-  CSS_PATH = File.expand_path(Dir.pwd + '/app/assets/stylesheets')
-
+  HTML_PATH = (Dir.pwd + '/app/views')
+  CSS_PATH = (Dir.pwd + '/app/assets/stylesheets')
 
   attr_accessor :directories, :files
 
   def initialize(*args)
     @directories = args.flatten
     @files = {}
-    html_directories
+    dir_iteration
     css_directories
+  end
+
+  def dir_iteration
+    @directories.each {|dir| html_files(dir)}
+  end
+
+  def html_files  dir
+    Dir.foreach(HTML_PATH + "/" + dir) do |file|
+      @files[file] = HTML_PATH + "/" + dir + "/" + file unless /^\./.match(file)
+    end
   end
 
   def html_directories
     @directories.each do |dir|
-      Dir.foreach(HTML_PATH + "/#{dir}") do |file|
-        @files[file] = HTML_PATH + "/#{dir}/#{file}" unless /^\./.match(file)
+      Dir.foreach(HTML_PATH + "/" + dir) do |file|
+        @files[file] = HTML_PATH + "/" + dir + "/" + file unless /^\./.match(file)
       end
     end
   end

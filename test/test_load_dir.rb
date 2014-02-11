@@ -21,4 +21,13 @@ class LoadDirTest < MiniTest::Test
     assert_equal Array, @load_dir.directories.class
   end
 
+  def test_directories_count_is_proper
+    assert_equal 1, @load_dir.directories.count
+  end
+
+  def test_html_file_count_is_proper_shoud_be_2
+    assert_equal 4, @load_dir.files.keys.count
+  end
+
+
 end

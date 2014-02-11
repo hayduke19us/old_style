@@ -1,6 +1,6 @@
 
 module Format
-  PATH = Dir.pwd 
+  PATH = Dir.pwd
 
   def new_or_open_index
     unless File.directory?(PATH + "/old_style")
@@ -12,7 +12,7 @@ module Format
   def create_css_file?
     unless File.exist?(css_path) 
       file = File.new(css_path, 'w+')
-      write_css(file)
+      write_css
     end
   end
 
@@ -20,101 +20,12 @@ module Format
     PATH + "/old_style/index.css"
   end
 
-  def write_css(file)
-    file.write %s{
-    li {list-style: none;}
-
-    a {text-decoration: none;
-     }
-
-    body {background-color: #efefef;}
-    #content {padding: 5%;
-              line-height: 1.4;
-              font-family: "HelveticaNeue-Light", 
-                           "Helvetica Neue Light", 
-                           "Helvetica Neue",
-                           "Helvetica Helvetica",
-                           "Helvetica",
-                           "Arial",
-                           "Lucida Grande",
-                           "sans-serif";
-              font-weight 300;
-            }
-
-    #dir-heading {border-bottom: 1px solid #cccaca;}
-
-    #looked-in {width:100%;
-                padding-bottom: 50px;
-    }
-
-    #looked-css {width: 200px;
-                 float: left;
-                 border-right: 2px solid #cccaca;
-                 padding-right: 10px;
-    }
-
-    #css-heading {border-bottom: 1px solid #cccaca;
-                  font-size: 20px;
-                  font-weight: bold;
-
-    }
-
-    #html-heading {border-bottom: 1px solid #cccaca;
-                   font-size: 20px;
-                   font-weight: bold;
-    }
-    #looked-html {width: 200px;
-                  float: left;
-                  padding-left: 10px;
-    }
-
-    #css-file:hover {color: blue;}
-    #html-file:hover {color: blue;}
-
-    #found-wrapper{padding: 30px 0 30px 0;
-                   width: 100%;
-                   float: left;
-                   color: green;
-    }
-
-    #found-title-wrapper {border-bottom: 1px solid #cccaca;}
-
-
-    #found-css {padding-right: 10px;
-                display: inline;
-                font-weight: bold;
-                font-size: 20px;
-
-    }
-    #good-percent {display: inline;
-                   color: black;
-    }
-
-    #found-style-wrapper {padding-top:10px;}
-
-    #empty-wrapper {color: red;
-                    float: left;
-                    width: 100%;
-    }
-
-    #empty-title-wrapper {border-bottom: 1px solid #cccaca;
-
-    }
-
-    #empty-css {padding-right: 10px;
-                display: inline;
-                font-weight: bold;
-                font-size: 20px;
-
-    }
-
-    #bad-percent {display: inline;
-                  color: black;
-    }
-
-    #empty-style-wrapper {padding: 10px 0 50px 0;}
-
-    #style {color: green;}}
+  def write_css
+    file = File.open(css_path, 'w+')
+    File.readlines("base.css").each do |line|
+     file.write line
+    end
+    file.close
   end
 
   def write_index

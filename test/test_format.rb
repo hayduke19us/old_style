@@ -30,7 +30,19 @@ module Format
       assert_equal 95, File.readlines("base.css").count
     end
 
+    # the following two test are in sequence
+    # the first deletes the contents of the css file
+    # the next one adds the css to file
+
+    def test_index_css_is_empty
+      #deletes file contents by File.new ('w+')
+      file = File.new(css_path, 'w+')
+      assert_equal 0, File.readlines(file).count
+      file.close
+    end
+
     def test_file_index_css_has_lines
+      #write the css from base.css file in gem
       write_css
       assert_equal 95, File.readlines(css_path).count
     end

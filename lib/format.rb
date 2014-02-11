@@ -19,7 +19,7 @@ module Format
   end
 
   def write_css
-    file = File.open(css_path, 'w+')
+    file = File.new(css_path, 'w+')
     File.readlines(BASE).each do |line|
      file.write line
     end
@@ -27,8 +27,8 @@ module Format
   end
 
   def write_index
-    create_css_file?
     file = new_or_open_index
+    create_css_file?
     file.write "<div id='header'>"
     file.write "<li id='main-heading'>
                 #{self.directories.count} Controller evaluated </li>"

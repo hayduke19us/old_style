@@ -1,7 +1,7 @@
 require 'helper'
 module Format
   class KlassTest < Minitest::Test
-    
+
     include Format
 
     def test_if_old_style_index_html_exist_new_or_open_index_returns_IO_stream

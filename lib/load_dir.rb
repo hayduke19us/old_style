@@ -1,8 +1,7 @@
 
 class LoadDir
-  HTML_PATH = File.expand_path(Dir.pwd + '/app/views')
-  CSS_PATH = File.expand_path(Dir.pwd + '/app/assets/stylesheets')
-
+  HTML_PATH = Dir.pwd + '/app/views'
+  CSS_PATH = Dir.pwd + '/app/assets/stylesheets'
 
   attr_accessor :directories, :files
 

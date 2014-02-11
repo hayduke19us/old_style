@@ -11,11 +11,7 @@ module Format
   end
 
   def create_css_file?
-    unless File.exist?(css_path) 
-      File.new(css_path, 'w+')
-    else File.readlines(BASE).count == File.readlines(css_path)
-      write_css
-    end
+    write_css
   end
 
   def css_path

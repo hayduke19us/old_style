@@ -35,7 +35,7 @@ module Format
     file = new_or_open_index
     file.write "<div id='header'>"
     file.write "<li id='main-heading'>
-                #{self.directories.count} Controller evaluated </li>"
+                #{self.directories.count} Controllers evaluated </li>"
     file.write "</div>"
     file.write "<body>"
     file.write "<head>"

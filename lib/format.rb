@@ -1,6 +1,7 @@
 
 module Format
   PATH = Dir.pwd
+  BASE = File.expand_path('../../base.css', __FILE__)
 
   def new_or_open_index
     unless File.directory?(PATH + "/old_style")
@@ -10,8 +11,8 @@ module Format
   end
 
   def create_css_file?
-    unless File.exist?(css_path) && 
-      File.readlines('base.css').count == File.readlines(css_path).count   
+    unless File.exist?(css_path) &&
+      File.readlines(BASE).count == File.readlines(css_path)
       file = File.new(css_path, 'w+')
       write_css
     end
@@ -23,7 +24,7 @@ module Format
 
   def write_css
     file = File.open(css_path, 'w+')
-    File.readlines("base.css").each do |line|
+    File.readlines(BASE).each do |line|
      file.write line
     end
     file.close
@@ -44,8 +45,8 @@ module Format
     file.write "<div id='directories'>"
     file.write "<h2 id='dir-heading'>#{self.directories.sort_by{|x| x.downcase}}</h2>"
     file.write "</div>"
-    file.write "<h4>#{self.css.count} css files compared to 
-    #{self.html.count} html files 
+    file.write "<h4>#{self.css.count} css files compared to
+    #{self.html.count} html files
     </h4>"
     file.write "<div id='looked-in'>"
     file.write "<div id='looked-css'>"
@@ -75,7 +76,7 @@ module Format
     file.write "</div>"
 
     file.write "<div id='empty-wrapper'>"
-    file.write "<div id='empty-title-wrapper'>" 
+    file.write "<div id='empty-title-wrapper'>"
     file.write "<h4 id='empty-css'>Bad</h4>"
     file.write "<li id='bad-percent'> #{self.bad_percent}</li>"
     file.write "</div>"

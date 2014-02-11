@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["hayduke19us"]
-  s.date = "2014-02-10"
+  s.date = "2014-02-11"
   s.description = "Rails helper. Finds the irrelevent styles in your \n  stylesheet and generates a html report to keep you informed."
   s.email = "hayduke19us@gmail.com"
   s.executables = ["old_style"]
@@ -30,6 +30,7 @@ Gem::Specification.new do |s|
     "app/assets/stylesheets/fake4.css",
     "app/views/fake/fake.html.erb",
     "app/views/fake/fake2.html",
+    "base.css",
     "bin/old_style",
     "lib/format.rb",
     "lib/html_parser.rb",

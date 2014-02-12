@@ -33,6 +33,13 @@ Rake::TestTask.new(:test) do |test|
   test.verbose = true
 end
 
+Rake::TestTask.new(:bench) do |bench|
+  ENV['BENCH'] = 'true'
+  bench.libs << 'lib' << 'test'
+  bench.pattern = 'test/**/bench_*.rb'
+  bench.verbose = true
+end
+
 desc "Code coverage detail"
 task :simplecov do
   ENV['COVERAGE'] = "true"

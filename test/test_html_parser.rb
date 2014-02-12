@@ -7,10 +7,6 @@ class KlassTest < Minitest::Test
     @file = File.expand_path("../../app", __FILE__) + "/views/fake/fake.html.erb" 
   end
 
-  def test_read_html_should_put_document_into_an_array
-    refute read_html(@file).empty?
-  end
-
   def test_remove_extras_should_remove_all_punctuation_and_whitespace
     refute remove_extras(@file).join.match(/(:|<|>|=|'|')/)
   end

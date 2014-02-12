@@ -1,13 +1,8 @@
 
 module HtmlParser
 
-  def read_html file
-    File.readlines(file)
-  end
-
   def remove_extras file
-    #the whitespace first
-    read_html(file).map {|line| line.delete(" <%>:=''\"\"")}
+    File.readlines(file).map {|line| line.delete(" <%>:=''\"\"")}
   end
 
   def id_exists? tag, file

@@ -37,7 +37,7 @@ class LoadDir
   def css_files dir
     #Dir.foreach methods arg is only the base dir
     Dir.foreach(CSS_PATH) do |file|
-      @files[file] = CSS_PATH if /#{dir}/.match(file) 
+      @files[file] = CSS_PATH if /(#{dir}|application)/.match(file) 
     end
   end
 

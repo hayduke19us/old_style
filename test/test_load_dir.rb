@@ -22,7 +22,9 @@ class LoadDirTest < MiniTest::Test
   end
 
   def test_html_files_attribute_is_populated_after_initialization
-    assert_equal 6, @load_dir.files.keys.count
+    #4 html files including layouts
+    #3 css files
+    assert_equal 7, @load_dir.files.keys.count
   end
 
 end

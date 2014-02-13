@@ -44,17 +44,17 @@ class ParseDirTest < MiniTest::Test
   end
 
   def test_parse_css_returns_hash_of_all_selectors_no_comments_no_SASS
-    assert_equal 7, @parse.parse_css.keys.count
+    assert_equal 8, @parse.parse_css.keys.count
   end
 
   def test_parse_css_keys_content
-    a = ["#salinger", "#find", "div.well", 
+    a = [".row", "#salinger", "#find", "div.well", 
          ".franny", "#franny", ".zooey", "#test-id"]
     assert_equal a, @parse.parse_css.keys
   end
 
   def test_found_css_finds_the_relevent_css
-    assert_equal 4, @parse.found.keys.count
+    assert_equal 5, @parse.found.keys.count
   end
 
   def test_empty_css_returns_a_hash_of_false_selectors
@@ -66,7 +66,7 @@ class ParseDirTest < MiniTest::Test
   end
 
   def test_good_percent
-    assert_equal "57.14%", @parse.good_percent
+    assert_equal "62.5%", @parse.good_percent
   end
 
   def test_success_message_if_Format#write_index_is_true

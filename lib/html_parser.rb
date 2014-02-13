@@ -18,14 +18,6 @@ module HtmlParser
     end
   end
 
-  def id_spike tag, file
-    tag = tag.gsub("#", "id")
-    x = read_html(file)
-    y = {}
-    x.each {|line| y[x.index(line)] = tag if line.delete(" <%>:=''\"\"").match(tag)}
-    y
-  end
-
   def class_exists? tag, file
     tag = tag.gsub('.', 'class') if tag.match(/^./)
     remove_extras(file).each do |line|

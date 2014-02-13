@@ -13,21 +13,23 @@ class LoadDir
   end
 
   def dir_iteration
-    @directories.each {|dir| html_files(dir)}
-    @directories.each {|dir| css_files(dir)}
-    @directories.each {|dir| layout_files(dir)}
+    @directories.each do |dir|
+      html_files(dir)
+      layout_files(dir)
+      css_files(dir)
+    end
   end
 
   def html_files dir
     Dir.foreach(HTML_PATH + "/" + dir) do |file|
-      @files[file] = HTML_PATH + "/" + dir + "/" + file unless /^\./.match(file)
+      self.files[file] = HTML_PATH + "/" + dir + "/" + file unless /^\./.match(file)
     end
   end
 
   def layout_files dir
     Dir.foreach(HTML_PATH + "/layouts") do |file|
-      if (dir).match(file) || "application".match(file)
-        @files[file] = HTML_PATH
+      if /(#{dir}\.html|application\.html)/.match(file)
+        self.files[file] = HTML_PATH + "/layouts/" + file unless /^\./.match(file)
       end
     end
   end 
@@ -35,7 +37,7 @@ class LoadDir
   def css_files dir
     #Dir.foreach methods arg is only the base dir
     Dir.foreach(CSS_PATH) do |file|
-      @files[file] = CSS_PATH if /#{dir}/.match(file)
+      @files[file] = CSS_PATH if /#{dir}/.match(file) 
     end
   end
 

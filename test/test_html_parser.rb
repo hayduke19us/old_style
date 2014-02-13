@@ -4,7 +4,7 @@ class KlassTest < Minitest::Test
   include HtmlParser
 
   def setup
-    @file = File.expand_path("../../app", __FILE__) + "/views/fake/fake.html.erb" 
+    @file = File.expand_path("../../app", __FILE__) + "/views/fake/fake1.html.erb" 
   end
 
   def test_remove_extras_should_remove_all_punctuation_and_whitespace

@@ -26,3 +26,4 @@ class LoadDirTest < MiniTest::Test
   end
 
 end
+

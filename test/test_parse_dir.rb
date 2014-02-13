@@ -40,7 +40,7 @@ class ParseDirTest < MiniTest::Test
   end
 
   def test_ParseDir#segregate_puts_html_files_in_an_array
-    assert_equal 2, @parse.html.count
+    assert_equal 4, @parse.html.count
   end
 
   def test_parse_css_returns_hash_of_all_selectors_no_comments_no_SASS

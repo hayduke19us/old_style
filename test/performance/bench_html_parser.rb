@@ -18,6 +18,14 @@ class BenchKlass < Minitest::Benchmark
       end
     end
 
+    def bench_id_spike
+      assert_performance_linear 0.99 do |n|
+        n.times do
+          id_spike("#salinger", @file)
+        end
+      end
+    end
+
     def bench_id_exists?
       assert_performance_linear 0.99 do |n|
         n.times do

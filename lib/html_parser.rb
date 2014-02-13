@@ -1,8 +1,12 @@
 
 module HtmlParser
 
+  def read_html file
+    File.readlines(file)
+  end
+
   def remove_extras file
-    File.readlines(file).map {|line| line.delete(" <%>:=''\"\"")}
+    read_html(file).map {|line| line.delete(" <%>:=''\"\"")}
   end
 
   def id_exists? tag, file
@@ -12,6 +16,14 @@ module HtmlParser
        return  true
       end
     end
+  end
+
+  def id_spike tag, file
+    tag = tag.gsub("#", "id")
+    x = read_html(file)
+    y = {}
+    x.each {|line| y[x.index(line)] = tag if line.delete(" <%>:=''\"\"").match(tag)}
+    y
   end
 
   def class_exists? tag, file

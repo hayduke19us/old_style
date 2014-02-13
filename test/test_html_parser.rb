@@ -60,4 +60,8 @@ class KlassTest < Minitest::Test
    assert_equal true, id_exists?("#test-id", @file)
   end
 
+  def test_id_spike
+    skip
+  end
+
 end

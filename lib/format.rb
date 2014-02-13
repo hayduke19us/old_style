@@ -1,7 +1,9 @@
 
 module Format
+
   PATH = Dir.pwd
   BASE = File.expand_path('../../base.css', __FILE__)
+  CSS_PATH = PATH + "/old_style/index.css"
 
   def new_or_open_index
     unless File.directory?(PATH + "/old_style")
@@ -10,16 +12,21 @@ module Format
     File.open(PATH + "/old_style/index.html", 'w+')
   end
 
-  def create_css_file?
-    write_css
+  def base_css_count
+    File.readlines(BASE).count == File.readlines(CSS_PATH).count
   end
 
-  def css_path
-    PATH + "/old_style/index.css"
+  def create_css_file?
+    unless File.exists?(CSS_PATH) && base_css_count 
+      write_css
+      true
+    else
+      false
+    end
   end
 
   def write_css
-    file = File.new(css_path, 'w+')
+    file = File.new(CSS_PATH, 'w+')
     File.readlines(BASE).each do |line|
      file.write line
     end
@@ -35,7 +42,7 @@ module Format
     file.write "</div>"
     file.write "<body>"
     file.write "<head>"
-    file.write "<link rel='stylesheet' type='text/css' href=#{css_path}>"
+    file.write "<link rel='stylesheet' type='text/css' href=#{CSS_PATH}>"
     file.write "</head>"
     file.write "<div id='content'>"
     file.write "<div id='directories'>"
@@ -91,6 +98,7 @@ module Format
     file.write "<a id ='issues-link' href = 'https://github.com/hayduke19us/old_style/issues?state=open'>old_style's issues page on github<a>"
     file.write "</div>"
     file.write "</div>"
+    file.close
     true
   end
 

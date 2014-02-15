@@ -1,4 +1,5 @@
 # old_style for Rails
+[![Gem Version](https://badge.fury.io/rb/old_style.png)](http://badge.fury.io/rb/old_style)
 
 I'm not the most organized person. It would be a big help to me if there was a helper to keep my stylesheets clean. old_style.gem helps you do that!
 old_style compares all of your styles with the differen nodes in your views.

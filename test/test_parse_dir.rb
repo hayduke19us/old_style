@@ -18,7 +18,7 @@ class ParseDirTest < MiniTest::Test
   def test_true_if_css?
     file = "playlist.css"
     assert @parse.css?(file)
-   end
+  end
 
   def false_if_html_with_css?
     file = "playlist.html"
@@ -33,7 +33,7 @@ class ParseDirTest < MiniTest::Test
   def false_if_css_for_html?
     file = "playlist.css"
     refute @parse.html?(file)
-   end
+  end
 
   def test_ParseDir#segregate_puts_css_files_in_an_array
     assert_equal 2, @parse.css.count
@@ -49,8 +49,8 @@ class ParseDirTest < MiniTest::Test
 
   def test_parse_css_keys_content
     a = [".row", "#salinger", "#find", "div.well", 
-         ".franny", "#franny", ".zooey", "#test-id"]
-    assert_equal a, @parse.parse_css.keys
+         ".franny", "#franny", ".zooey", "#test-id"].sort
+    assert_equal a, @parse.parse_css.keys.sort
   end
 
   def test_found_css_finds_the_relevent_css

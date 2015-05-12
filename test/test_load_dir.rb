@@ -3,14 +3,16 @@ require 'helper'
 class LoadDirTest < MiniTest::Test
   def setup
     @load_dir = LoadDir.new("fake") 
+    @html_path = Dir.home + '/my_gems/old_style/app/views'
+    @css_path = Dir.home + '/my_gems/old_style/app/assets/stylesheets'
   end
 
   def test_HTML_PATH_should_be_for_views
-    assert_equal '/Users/hayduke19us/my_gems/old_style/app/views', LoadDir::HTML_PATH 
+    assert_equal @html_path, LoadDir::HTML_PATH 
   end
 
   def test_CSS_PATH_should_be_for_assets_stylesheets
-    assert_equal '/Users/hayduke19us/my_gems/old_style/app/assets/stylesheets', LoadDir::CSS_PATH 
+    assert_equal @css_path, LoadDir::CSS_PATH 
   end
 
   def test_LoadDir_args_is_an_array_of_dir
@@ -26,6 +28,4 @@ class LoadDirTest < MiniTest::Test
     #3 css files
     assert_equal 7, @load_dir.files.keys.count
   end
-
 end
-

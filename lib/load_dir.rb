@@ -2,7 +2,7 @@ class LoadDir
 
   HTML_PATH     = Dir.pwd + '/app/views'
   CSS_PATH      = Dir.pwd + '/app/assets/stylesheets'
-  CSS_MAIN_PATH = Dir.pwd + '/app/assets/stylesheets/base/styles'
+  CSS_MAIN_PATH = Dir.pwd + '/app/assets/stylesheets/styles'
 
   attr_accessor :directories, :files
 

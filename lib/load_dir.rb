@@ -1,8 +1,8 @@
-
 class LoadDir
 
-  HTML_PATH = Dir.pwd + '/app/views'
-  CSS_PATH = Dir.pwd + '/app/assets/stylesheets'
+  HTML_PATH     = Dir.pwd + '/app/views'
+  CSS_PATH      = Dir.pwd + '/app/assets/stylesheets'
+  CSS_MAIN_PATH = Dir.pwd + '/app/assets/stylesheets/base'
 
   attr_accessor :directories, :files
 
@@ -39,8 +39,8 @@ class LoadDir
     Dir.foreach(CSS_PATH) do |file|
       self.files[file] = CSS_PATH if /(#{dir}|application)/.match(file) 
     end
+    Dir.foreach(CSS_MAIN_PATH) do |file|
+      self.files[file] = CSS_MAIN_PATH if /(#{dir}|application)/.match(file) 
+    end
   end
-
 end
-
-
